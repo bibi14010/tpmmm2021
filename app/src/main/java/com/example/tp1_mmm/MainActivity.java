@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
+
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.toolbar);
@@ -45,22 +46,13 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_settings:
-                FirstFragment.resetAllfields(item.getActionView());
-                return true;
-            case R.id.action_secret:
-                FirstFragment.showTheSecret(item.getActionView());
-                return true;
-
             default:
                 // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
+                // Invoke the superclass to handle it
                 return super.onOptionsItemSelected(item);
-
         }
     }
 

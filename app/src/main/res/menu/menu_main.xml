@@ -5,9 +5,6 @@
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
-        android:title="reset"
+        android:title="Settings..."
         app:showAsAction="never" />
-    <item
-        android:title="Show me the secret"
-        android:id="@+id/action_secret"/>
 </menu>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_secret"
+        android:title="Show me"
+        app:actionProviderClass="androidx.mediarouter.app.MediaRouteActionProvider"
+        tools:icon="@drawable/mr_button_light" />
+    <item
+        android:id="@+id/reset_action"
+        android:title="Reset fields"
+        app:actionProviderClass="androidx.mediarouter.app.MediaRouteActionProvider"
+        tools:icon="@drawable/mr_button_light" />
+</menu>

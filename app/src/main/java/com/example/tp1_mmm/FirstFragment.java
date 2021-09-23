@@ -2,6 +2,7 @@ package com.example.tp1_mmm;
 
 import android.appwidget.AppWidgetProvider;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,8 +27,6 @@ import java.util.Date;
 
 public class FirstFragment extends Fragment {
 
-    private View rootView ;
-
     private FragmentFirstBinding binding;
 
     @Override
@@ -40,19 +39,20 @@ public class FirstFragment extends Fragment {
 
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
+
     ) {
+        setHasOptionsMenu(true);
         binding = FragmentFirstBinding.inflate(inflater, container, false);
-        this.rootView = binding.getRoot();
-        return this.rootView;
+        return binding.getRoot();
 
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         binding.button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
                 EditText first_name_text = view.getRootView().findViewById(R.id.firstNameTextInput);
                 EditText last_name_text = view.getRootView().findViewById(R.id.lastNameTextInput);
@@ -64,35 +64,58 @@ public class FirstFragment extends Fragment {
 
                 Snackbar.make(view, display_text, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-
-                //NavHostFragment.findNavController(FirstFragment.this)
-                //        .navigate(R.id.action_FirstFragment_to_SecondFragment);
+                /*
+                NavHostFragment.findNavController(FirstFragment.this)
+                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
+                */
             }
         });
+
     }
+
     @Override
-    public void onCreateOptionsMenu (Menu menu , MenuInflater inflater ) {
-    // Inflate the menu ; this adds items to the action bar
-    // if it is present .
-        inflater.inflate( R.menu.menu_main , menu );
-        super.onCreateOptionsMenu( menu , inflater );
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // TODO Add your menu entries here
+        inflater.inflate(R.menu.menu_first_fragment, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
-    public static void resetAllfields(View view){
-        EditText first_name_text = view.findViewById(R.id.firstNameTextInput);
-        EditText last_name_text = view.findViewById(R.id.lastNameTextInput);
-        DatePicker date = view.findViewById(R.id.textDateBirthday);
-        EditText city = view.findViewById(R.id.cityTextInput);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
-        first_name_text.setText("");
-        last_name_text.setText("");
-        date.updateDate(Calendar.YEAR,Calendar.MONTH,Calendar.DATE);
-        city.setText("");
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                this.resetAllfields();
+                return true;
+            case R.id.action_secret:
+                this.showTheSecret();
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 
-    public static void showTheSecret(View view){
-        EditText cellphone = view.findViewById(R.id.cellPhoneInput);
-        cellphone.setVisibility(View.VISIBLE);
+    public void resetAllfields(){
+
+        //EditText first_name_text = view.findViewById(R.id.firstNameTextInput);
+        //EditText last_name_text = view.findViewById(R.id.lastNameTextInput);
+        //DatePicker date = view.findViewById(R.id.textDateBirthday);
+        //EditText city = view.findViewById(R.id.cityTextInput);
+
+        //first_name_text.setText("");
+        //last_name_text.setText("");
+        //date.updateDate(Calendar.YEAR,Calendar.MONTH,Calendar.DATE);
+        //city.setText("");
+    }
+
+    public void showTheSecret(){
+
+        //EditText cellphone = this.getView().findViewById(R.id.cellPhoneInput);
+        //cellphone.setVisibility(View.VISIBLE);
     }
     @Override
     public void onDestroyView() {
