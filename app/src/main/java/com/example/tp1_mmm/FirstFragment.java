@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
@@ -29,10 +30,11 @@ public class FirstFragment extends Fragment {
 
     private FragmentFirstBinding binding;
 
-    @Override
-    public void setHasOptionsMenu(boolean hasMenu) {
-        super.setHasOptionsMenu(true);
-    }
+    public EditText first_name_text;
+    public EditText last_name_text;
+    public DatePicker date;
+    public EditText city ;
+    public EditText cellphone;
 
     @Override
     public View onCreateView(
@@ -41,23 +43,30 @@ public class FirstFragment extends Fragment {
             Bundle savedInstanceState
 
     ) {
-        setHasOptionsMenu(true);
         binding = FragmentFirstBinding.inflate(inflater, container, false);
+        super.setHasOptionsMenu(true);
         return binding.getRoot();
 
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
+        super.onCreate(savedInstanceState);
+    }
+
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        this.cellphone = this.getView().findViewById(R.id.cellPhoneInput);
+        this.first_name_text = view.getRootView().findViewById(R.id.firstNameTextInput);
+        this.last_name_text = view.getRootView().findViewById(R.id.lastNameTextInput);
+        this.date = view.getRootView().findViewById(R.id.textDateBirthday);
+        this.city = view.getRootView().findViewById(R.id.cityTextInput);
+
         binding.button6.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-
-
-                EditText first_name_text = view.getRootView().findViewById(R.id.firstNameTextInput);
-                EditText last_name_text = view.getRootView().findViewById(R.id.lastNameTextInput);
-                DatePicker date = view.getRootView().findViewById(R.id.textDateBirthday);
-                EditText city = view.getRootView().findViewById(R.id.cityTextInput);
 
                 String display_text = "Hello "+first_name_text.getText().toString()+" "+last_name_text.getText().toString()+" !\n";
                 display_text +="You are born the "+date.getDayOfMonth()+"/"+ (date.getMonth() + 1)+"/"+date.getYear()+" in "+city.getText().toString()+" !";
@@ -70,11 +79,11 @@ public class FirstFragment extends Fragment {
                 */
             }
         });
-
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        Log.i("INFO","onCreateOptionsMenu executed from first fragment");
         // TODO Add your menu entries here
         inflater.inflate(R.menu.menu_first_fragment, menu);
         super.onCreateOptionsMenu(menu, inflater);
@@ -82,40 +91,30 @@ public class FirstFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
-            case R.id.action_settings:
+            case R.id.reset_action:
                 this.resetAllfields();
                 return true;
-            case R.id.action_secret:
+            case R.id.show_action:
                 this.showTheSecret();
                 return true;
-
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
-
         }
     }
 
     public void resetAllfields(){
 
-        //EditText first_name_text = view.findViewById(R.id.firstNameTextInput);
-        //EditText last_name_text = view.findViewById(R.id.lastNameTextInput);
-        //DatePicker date = view.findViewById(R.id.textDateBirthday);
-        //EditText city = view.findViewById(R.id.cityTextInput);
-
-        //first_name_text.setText("");
-        //last_name_text.setText("");
-        //date.updateDate(Calendar.YEAR,Calendar.MONTH,Calendar.DATE);
-        //city.setText("");
+        this.first_name_text.setText("");
+        this.last_name_text.setText("");
+        this.date.updateDate(Calendar.YEAR,Calendar.MONTH,Calendar.DATE);
+        this.city.setText("");
     }
 
     public void showTheSecret(){
-
-        //EditText cellphone = this.getView().findViewById(R.id.cellPhoneInput);
-        //cellphone.setVisibility(View.VISIBLE);
+        this.cellphone.setVisibility(View.VISIBLE);
     }
     @Override
     public void onDestroyView() {
