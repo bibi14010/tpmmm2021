@@ -1,6 +1,8 @@
 package com.example.tp1_mmm;
 
 import android.appwidget.AppWidgetProvider;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,6 +26,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.tp1_mmm.databinding.FragmentFirstBinding;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -32,6 +36,7 @@ public class FirstFragment extends Fragment {
 
     private FragmentFirstBinding binding;
 
+    public View first_fragment_view;
     public EditText first_name_text;
     public EditText last_name_text;
     public DatePicker date;
@@ -60,6 +65,7 @@ public class FirstFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        this.first_fragment_view = this.getView();
         this.cellphone = this.getView().findViewById(R.id.cellPhoneInput);
         this.first_name_text = view.getRootView().findViewById(R.id.firstNameTextInput);
         this.last_name_text = view.getRootView().findViewById(R.id.lastNameTextInput);
@@ -110,6 +116,16 @@ public class FirstFragment extends Fragment {
                 return true;
             case R.id.show_action:
                 this.showTheSecret();
+                return true;
+
+            case R.id.city_action:
+                if (this.city.getText().toString().matches("")){
+                    Snackbar.make(this.first_fragment_view, "Pas de ville spécifiée", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }else {
+                    Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://fr.wikipedia.org/wiki/"+ this.city.getText().toString()));
+                    startActivity(i);
+                }
                 return true;
             default:
                 // If we got here, the user's action was not recognized.

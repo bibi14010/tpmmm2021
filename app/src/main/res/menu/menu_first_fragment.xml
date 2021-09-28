@@ -13,4 +13,9 @@
         android:orderInCategory="100"
         android:title="Clear"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/city_action"
+        android:orderInCategory="100"
+        android:title="Ma ville"
+        app:showAsAction="never" />
 </menu>
