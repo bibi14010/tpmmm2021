@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="departements" >
+        <item name="ain" type="string">01 - Ain - Bourg-en-bresse</item>
+        <item name="aisne" type="string">02 - Aisne - Laon</item>
+        <item name="allier" type="string">03 - Allier - Moulins</item>
+        <item name="AdHP" type="string">04 - Alpes-de-Haute-Provence - Digne-les-bains</item>
+        <item name="HA" type="string">05 - Hautes-alpes - Gap</item>
+        <item name="AM" type="string">06 - Alpes-maritimes - Nice</item>
+        <item name="ardeche" type="string"> 07 - Ardèche - Privas</item>
+        <item name="arennes" type="string">08 - Ardennes - Charleville-mézières</item>
+        <item name="ariege" type="string">09 - Ariège - Foix</item>
+        <item name="aube" type="string">10 - Aube - Troyes</item>
+        <item name="aude" type="string">11 - Aude - Carcassonne</item>
+        <item name="aveyron" type="string">12 - Aveyron - Rodez</item>
+        <item name="BdR" type="string">13 - Bouches-du-Rhône - Marseille</item>
+        <item name="calvados" type="string">14 - Calvados - Caen</item>
+    </string-array>
+</resources>

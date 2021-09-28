@@ -9,8 +9,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -35,6 +37,7 @@ public class FirstFragment extends Fragment {
     public DatePicker date;
     public EditText city ;
     public EditText cellphone;
+    public Spinner spinner;
 
     @Override
     public View onCreateView(
@@ -62,6 +65,16 @@ public class FirstFragment extends Fragment {
         this.last_name_text = view.getRootView().findViewById(R.id.lastNameTextInput);
         this.date = view.getRootView().findViewById(R.id.textDateBirthday);
         this.city = view.getRootView().findViewById(R.id.cityTextInput);
+
+        // Set the array of values in order to be used by the spinner
+        this.spinner = view.getRootView().findViewById(R.id.departement_spinner);
+        spinner.setPrompt("Selectionner un département");
+
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity().getBaseContext(),
+//                R.array.departements, android.R.layout.simple_spinner_item);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner.setAdapter(adapter);
+
 
         binding.button6.setOnClickListener(new View.OnClickListener() {
 
